@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\OfficesData" />
     <None Remove="Resources\sppc64.dll" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\OfficesData" />
     <EmbeddedResource Include="Resources\sppc64.dll" />
   </ItemGroup>
 
