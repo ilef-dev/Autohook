@@ -44,6 +44,7 @@
             linkLabel1 = new LinkLabel();
             label5 = new Label();
             comboBox3 = new ComboBox();
+            label4 = new Label();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -221,11 +222,22 @@
             comboBox3.TabIndex = 11;
             comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
+            // label4
+            // 
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(41, 9);
+            label4.Name = "label4";
+            label4.Size = new Size(397, 47);
+            label4.TabIndex = 10;
+            label4.Text = "Для корректной работы программе необходимы права администратора";
+            label4.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 653);
+            Controls.Add(label4);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(button1);
@@ -258,5 +270,6 @@
         private GroupBox groupBox4;
         private Label label1;
         private RichTextBox richTextBox1;
+        private Label label4;
     }
 }

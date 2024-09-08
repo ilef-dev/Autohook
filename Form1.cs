@@ -1,5 +1,6 @@
 using brod;
 using System.Diagnostics;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace microp
@@ -10,6 +11,21 @@ namespace microp
         {
             InitializeComponent();
             LoadOfficesAsync();
+
+            if(!IsRunAsAdmin())
+            {
+                label4.Visible = true;
+            }
+        }
+
+        static bool IsRunAsAdmin()
+        {
+            // Получаем текущую идентификацию пользователя
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+
+            // Проверяем, является ли пользователь администратором
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private async void LoadOfficesAsync()
@@ -80,13 +96,29 @@ namespace microp
                 label1.Text = "Ошибка";
                 label1.ForeColor = Color.Red;
                 progressBar1.Enabled = false;
-                return;
+                //return;
             }
             progressBar1.Value = 90;
 
             richTextBox1.AppendText("Активация ключа" + Environment.NewLine);
             richTextBox1.AppendText("Нажмите OK" + Environment.NewLine);
-            result = await Task.Run(() => OfficeActivation.InsertKey());
+
+            string key = null;
+            string year = comboBox3.SelectedItem as string;
+            string name = comboBox1.SelectedItem as string;
+            foreach(var office in OfficeLoader.data)
+            {
+                if (office.year == year && office.name == name)
+                {
+                    key = office.key;
+                }
+            }
+
+            richTextBox1.AppendText("Найден ключ: " + key + Environment.NewLine);
+            if (key != null)
+            {
+                result = await Task.Run(() => OfficeActivation.InsertKey(key));
+            }
             if (result == 0)
             {
                 richTextBox1.AppendText("Не удалось активировать ключ" + Environment.NewLine);

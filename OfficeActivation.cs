@@ -107,10 +107,10 @@ namespace microp
             return 1;
         }
 
-        public static int InsertKey()
+        public static int InsertKey(string key)
         {
             // Формируем команду
-            string command = $"/C slmgr /ipk 8WXTP-MN628-KY44G-VJWCK-C7PCF";
+            string command = $"/C slmgr /ipk " + key;
 
             // Регистрация поставщика кодировок для поддержки CP866
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -144,7 +144,7 @@ namespace microp
                     }
                     else
                     {
-                        Logger.Err($"Ошибка создания символической ссылки.");
+                        return 1;
                     }
                 }
             }
