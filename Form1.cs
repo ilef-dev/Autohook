@@ -119,7 +119,7 @@ namespace microp
             {
                 result = await Task.Run(() => OfficeActivation.InsertKey(key));
             }
-            if (result == 0)
+            if (result != 0)
             {
                 richTextBox1.AppendText("Не удалось активировать ключ" + Environment.NewLine);
                 label1.Text = "Ошибка";

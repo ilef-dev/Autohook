@@ -71,7 +71,7 @@ namespace microp
 
         public static int UploadSppc64()
         {
-            string resourceName = "microp.Resources.sppc64.dll";
+            string resourceName = "brod.Resources.sppc64.dll";
             string preOutputPath = @"%ProgramFiles%\Microsoft Office\root\vfs\System\sppc.dll";
             string outputPath = Environment.ExpandEnvironmentVariables(preOutputPath);
 
