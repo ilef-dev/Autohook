@@ -1,4 +1,4 @@
-﻿namespace microp
+﻿namespace brod
 {
     partial class Form1
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             progressBar1 = new ProgressBar();
             groupBox1 = new GroupBox();
@@ -45,6 +46,7 @@
             label5 = new Label();
             comboBox3 = new ComboBox();
             label4 = new Label();
+            label6 = new Label();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -54,7 +56,7 @@
             // button1
             // 
             button1.Enabled = false;
-            button1.Location = new Point(167, 286);
+            button1.Location = new Point(173, 574);
             button1.Name = "button1";
             button1.Size = new Size(134, 52);
             button1.TabIndex = 0;
@@ -64,7 +66,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(6, 131);
+            progressBar1.Location = new Point(5, 131);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(386, 30);
             progressBar1.Style = ProgressBarStyle.Continuous;
@@ -78,14 +80,14 @@
             groupBox1.Enabled = false;
             groupBox1.Location = new Point(41, 344);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(397, 231);
+            groupBox1.Size = new Size(397, 224);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Активация";
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(6, 26);
+            richTextBox1.Location = new Point(5, 26);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(386, 99);
@@ -95,20 +97,19 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(label1);
-            groupBox4.Location = new Point(100, 167);
+            groupBox4.Location = new Point(8, 167);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(190, 58);
+            groupBox4.Size = new Size(383, 51);
             groupBox4.TabIndex = 11;
             groupBox4.TabStop = false;
             groupBox4.Text = "Состояние";
             // 
             // label1
             // 
-            label1.Enabled = false;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label1.Location = new Point(6, 21);
             label1.Name = "label1";
-            label1.Size = new Size(178, 34);
+            label1.Size = new Size(371, 20);
             label1.TabIndex = 0;
             label1.Text = "Ожидание";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -230,13 +231,24 @@
             label4.Size = new Size(397, 47);
             label4.TabIndex = 10;
             label4.Text = "Для корректной работы программе необходимы права администратора";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             label4.Visible = false;
+            // 
+            // label6
+            // 
+            label6.Location = new Point(41, 221);
+            label6.Name = "label6";
+            label6.Size = new Size(397, 120);
+            label6.TabIndex = 11;
+            label6.Text = resources.GetString("label6.Text");
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 653);
+            Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -271,5 +283,6 @@
         private Label label1;
         private RichTextBox richTextBox1;
         private Label label4;
+        private Label label6;
     }
 }

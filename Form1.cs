@@ -1,9 +1,11 @@
 using brod;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
-namespace microp
+namespace brod
 {
     public partial class Form1 : Form
     {
@@ -12,7 +14,7 @@ namespace microp
             InitializeComponent();
             LoadOfficesAsync();
 
-            if(!IsRunAsAdmin())
+            if (!IsRunAsAdmin())
             {
                 label4.Visible = true;
             }
@@ -70,35 +72,53 @@ namespace microp
             }
         }
 
+        // Константа для изменения цвета ProgressBar
+        private const int PBM_SETSTATE = 0x0410;
+        private const int PBST_NORMAL = 0x0001;
+        private const int PBST_ERROR = 0x0002;
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
+
         private async void button1_Click(object sender, EventArgs e)
         {
+            // Проходим по всем элементам управления внутри GroupBox
+            foreach (Control control in groupBox2.Controls)
+            {
+                control.Enabled = false; // Отключаем каждый элемент
+            }
+
             int result;
             button1.Enabled = false;
             label1.Enabled = true;
 
-            richTextBox1.AppendText("Создание символической ссылки для sppc.dll" + Environment.NewLine);
+            progressBar1.Value = 5;
+
+            richTextBox1.AppendText("Создание символической ссылки для sppcs.dll" + Environment.NewLine);
             result = await Task.Run(() => OfficeActivation.CreateMklink());
             if (result == 0)
             {
-                richTextBox1.AppendText("Не удалось создать символическую ссылку для sppc.dll" + Environment.NewLine);
+                richTextBox1.AppendText("Не удалось создать символическую ссылку для sppcs.dll" + Environment.NewLine);
                 label1.Text = "Ошибка";
                 label1.ForeColor = Color.Red;
-                progressBar1.Enabled = false;
+                SendMessage(progressBar1.Handle, PBM_SETSTATE, (IntPtr)PBST_ERROR, IntPtr.Zero);
                 return;
             }
             progressBar1.Value = 10;
+            progressBar1.Refresh();
 
-            richTextBox1.AppendText("Добавление модифицированной библиотки sppcs.dll" + Environment.NewLine);
-            result = await Task.Run(() => OfficeActivation.UploadSppc64());
+            richTextBox1.AppendText("Добавление модифицированной библиотки sppc.dll" + Environment.NewLine);
+            result = await Task.Run(() => OfficeActivation.UploadSppc());
             if (result == 0)
             {
-                richTextBox1.AppendText("Не удалось добавить модифицированную библиотку sppcs.dll" + Environment.NewLine);
+                richTextBox1.AppendText("Не удалось добавить модифицированную библиотку sppc.dll" + Environment.NewLine);
                 label1.Text = "Ошибка";
                 label1.ForeColor = Color.Red;
-                progressBar1.Enabled = false;
-                //return;
+                SendMessage(progressBar1.Handle, PBM_SETSTATE, (IntPtr)PBST_ERROR, IntPtr.Zero);
+                return;
             }
             progressBar1.Value = 90;
+            progressBar1.Refresh();
 
             richTextBox1.AppendText("Активация ключа" + Environment.NewLine);
             richTextBox1.AppendText("Нажмите OK" + Environment.NewLine);
@@ -106,7 +126,7 @@ namespace microp
             string key = null;
             string year = comboBox3.SelectedItem as string;
             string name = comboBox1.SelectedItem as string;
-            foreach(var office in OfficeLoader.data)
+            foreach (var office in OfficeLoader.data)
             {
                 if (office.year == year && office.name == name)
                 {
@@ -124,12 +144,12 @@ namespace microp
                 richTextBox1.AppendText("Не удалось активировать ключ" + Environment.NewLine);
                 label1.Text = "Ошибка";
                 label1.ForeColor = Color.Red;
-                progressBar1.Enabled = false;
+                SendMessage(progressBar1.Handle, PBM_SETSTATE, (IntPtr)PBST_ERROR, IntPtr.Zero);
                 return;
             }
             progressBar1.Value = 100;
 
-            label1.Text = "Успешно";
+            label1.Text = "Активированно";
             label1.ForeColor = Color.Green;
         }
 
@@ -139,6 +159,7 @@ namespace microp
             comboBox2.Enabled = true;
             button1.Enabled = true;
             groupBox1.Enabled = true;
+            comboBox2.SelectedIndex = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)

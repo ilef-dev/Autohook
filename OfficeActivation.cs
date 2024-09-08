@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace microp
+namespace brod
 {
     internal static class OfficeActivation
     {
@@ -69,7 +69,7 @@ namespace microp
             return 1;
         }
 
-        public static int UploadSppc64()
+        public static int UploadSppc()
         {
             string resourceName = "brod.Resources.sppc64.dll";
             string preOutputPath = @"%ProgramFiles%\Microsoft Office\root\vfs\System\sppc.dll";

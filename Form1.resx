@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Для активации Microsoft Office выберите нужную версию в меню выше. Если у Вас еще не установлен office вы также можете скачать оффициальный образ сгенерировав ссылку. Для того чтобы узнать какая версия office установлена, Вы можете использовать панель упрравления Windows или настройки </value>
+  </data>
 </root>
