@@ -1,4 +1,4 @@
-namespace brod
+namespace Autohook
 {
     internal static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace brod
+﻿namespace Autohook
 {
     partial class Form1
     {
@@ -255,7 +255,7 @@
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Brod ver1.0";
+            Text = "Autohook ver1.0";
             groupBox1.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox2.ResumeLayout(false);

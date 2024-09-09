@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace brod
+namespace Autohook
 {
     internal static class OfficeLoader
     {
@@ -28,7 +28,7 @@ namespace brod
         {
             // Получаем поток ресурса
             Assembly assembly = Assembly.GetExecutingAssembly();
-            string resourceName = "brod.Resources.OfficesData"; // Замените на ваш фактический namespace и имя файла
+            string resourceName = "Autohook.Resources.OfficesData"; // Замените на ваш фактический namespace и имя файла
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))

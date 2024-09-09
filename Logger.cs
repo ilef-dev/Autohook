@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace brod
+namespace Autohook
 {
     internal static class Logger
     {

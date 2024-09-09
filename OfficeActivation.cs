@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace brod
+namespace Autohook
 {
     internal static class OfficeActivation
     {
@@ -71,7 +71,7 @@ namespace brod
 
         public static int UploadSppc()
         {
-            string resourceName = "brod.Resources.sppc64.dll";
+            string resourceName = "Autohook.Resources.sppc64.dll";
             string preOutputPath = @"%ProgramFiles%\Microsoft Office\root\vfs\System\sppc.dll";
             string outputPath = Environment.ExpandEnvironmentVariables(preOutputPath);
 

@@ -1,11 +1,11 @@
-using brod;
+using Autohook;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
-namespace brod
+namespace Autohook
 {
     public partial class Form1 : Form
     {
